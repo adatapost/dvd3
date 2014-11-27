@@ -1,0 +1,43 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Page 3</title>
+    <link href="../Content/bootstrap.min.css" rel="stylesheet" />
+</head>
+<body>
+    <div id="container"  class="panel panel-success col-md-7 col-lg-7 col-xs-7">
+        <h4 class="panel-heading">
+          Notes
+        </h4>
+
+    </div>
+    <script    src="../Scripts/d3.js"></script>
+    <script>
+        var paragraphs = [
+            { "para": "Data-Driven Document is full name of D3.", "ratting": 9 },
+            { "para": "Read d3js wiki for more information.", "ratting": 2 },
+            { "para": "Purchase good books", "ratting": 6 }
+        ];
+        d3.select("#container")
+          .selectAll("p")
+            .data(paragraphs)
+            .enter()
+        .append("p")
+        .html(function (d) { return " " + d.para + "  <small class='badge'>Rating " + d.ratting +"</small>"; })
+        .attr("class", "glyphicon glyphicon-ok text-info")
+        .style("display", "block")
+        .style("color", function (d) {
+            if (d.ratting >= 7) return "green";
+            if (d.ratting >= 4) return "blue";
+            return "red";
+        });
+
+        //Add back link
+        d3.select(".panel-heading").append("a")
+            .attr("href", "../")
+            .text("Back")
+        .attr("class","btn-sm btn-danger") ;
+        
+    </script>
+</body>
+</html>

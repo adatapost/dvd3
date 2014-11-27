@@ -1,0 +1,82 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Page 1</title>
+    <link href="../Content/bootstrap.min.css" rel="stylesheet" />
+</head>
+<body>
+    
+    <script   src="../Scripts/d3.js"></script>
+    <script>
+        d3.select("body").append("h1").text("I'm Heading1");
+        d3.select("body").insert("a", "h1").attr("href", "../").text("Back");
+        d3.select("body").append("h2")
+                             .text("I'm Heading2");
+        
+        var days = ["Sun", "Mon", "Tue", "Wed"];
+
+        d3.select("body").append("ol")
+                            .selectAll("li")
+                            .data(days).enter()
+                                  .append("li").text(function (d) { return d; });
+
+        d3.csv("data/data.csv", function (error, data) {
+            if (error) {
+                console.log(error);
+            } else {
+                console.log(data);
+                var table = d3.select("body").append("table")
+                     .attr("border", "1")
+                    .attr("class", "table-bordered  table-striped");
+                table.append("thead")
+                    .html(function () {
+                        return "<tr><th>Roll</th><th>Name</th><th>English</th><th>Maths</th><th>Science</th><th>Total</th><th>%</th></tr>";
+                    });
+                table.append("caption").append("h2").html("CSV Data using <code>d3.csv(url,callback)</code>");
+                var tbody = table.append("tbody");
+                data.forEach(function (value) {
+                    var tr = tbody.append("tr");
+                    tr.append("td").text(value.roll);
+                    tr.append("td").text(value.name);
+                    tr.append("td").text(value.english);
+                    tr.append("td").text(value.maths);
+                    tr.append("td").text(value.science);
+                    tr.append("td").text(1 * value.english + 1 * value.maths + 1 * value.science);
+                    tr.append("td").text(((1 * value.english + 1 * value.maths + 1 * value.science) / 3).toFixed(2));
+                });
+            }
+        });
+        
+
+        d3.json("data/data.json.txt", function (error, data) {
+            if (error) {
+                console.log(error);
+            } else {
+
+                console.log(data);
+                var table = d3.select("body").append("table")
+                     .attr("border", "1")
+                    .attr("class", "table-bordered table  table-condensed table-striped");
+
+                table.append("thead")
+                   .html(function () {
+                       return "<tr><th>Roll</th><th>Name</th><th>English</th><th>Maths</th><th>Science</th><th>Total</th><th>%</th></tr>";
+                   });
+                table.append("caption").append("h2").html("JSON Data using <code>d3.json(url,callback)</code>");
+                var tbody = table.append("tbody");
+
+                data.forEach(function (value) {
+                    var tr = tbody.append("tr");
+                    tr.append("td").text(value.roll);
+                    tr.append("td").text(value.name);
+                    tr.append("td").text(value.english);
+                    tr.append("td").text(value.maths);
+                    tr.append("td").text(value.science);
+                    tr.append("td").text(1 * value.english + 1 * value.maths + 1 * value.science);
+                    tr.append("td").text(((1 * value.english + 1 * value.maths + 1 * value.science) / 3).toFixed(2));
+                });
+            }
+        });
+    </script>
+</body>
+</html>

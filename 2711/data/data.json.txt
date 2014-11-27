@@ -1,0 +1,4 @@
+﻿[
+    { "roll": 10, "name": "Rajesh", "english": 99, "maths": 55, "science": 88 },
+    { "roll": 20, "name": "Reena", "english": 19, "maths": 55, "science": 28 }
+]

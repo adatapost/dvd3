@@ -1,0 +1,37 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>D3 - Data Driven Documents</title>
+    <link href="Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="Content/bootstrap-theme.min.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="container container-fluid">
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                <h1 class="panel-heading">
+                    <span class="text-danger">D</span><sup class="text-info">3</sup> - <span class="text-success">Data Driven Documents</span>
+                </h1>
+            </div>
+            <div class="bg-primary well-sm">
+               <span class="glyphicon glyphicon-info-sign" ></span> D3 also refereed as D<sup>3</sup>, is a JavaScript library for creating Data-Driven Documents (HTML and SVG).
+            </div>
+            <div class="panel-body">
+                <ol id="item-list" class="btn-link"></ol>
+            </div>
+        </div>
+    </div>
+    <script src="Scripts/d3.js"></script>
+    <script>
+        var links = [
+            "2711/page1.html",
+            "2711/page2.html"
+        ];
+
+        d3.select("#item-list").selectAll("li").data(links).enter().append("li").html(function (d) {
+            return "<a href='" + d + "'>" + d + "</a>";
+        });
+    </script>
+
+</body>
+</html>
